@@ -1,0 +1,27 @@
+2024-04-03 14:04:56 +0700     181 execution.flow     INFO     Start executing nodes in thread pool mode.
+2024-04-03 14:04:56 +0700     181 execution.flow     INFO     Start to run 8 nodes with concurrency level 16.
+2024-04-03 14:04:56 +0700     181 execution.flow     INFO     Executing node coherence_score. node run id: 7e8f1d23-3e99-4ee1-b2e0-339a7c4282f5_coherence_score_0
+2024-04-03 14:04:56 +0700     181 execution.flow     INFO     Executing node fluency_score. node run id: 7e8f1d23-3e99-4ee1-b2e0-339a7c4282f5_fluency_score_0
+2024-04-03 14:04:56 +0700     181 execution.flow     INFO     Executing node groundedness_score. node run id: 7e8f1d23-3e99-4ee1-b2e0-339a7c4282f5_groundedness_score_0
+2024-04-03 14:04:56 +0700     181 execution.flow     INFO     Executing node relevance_score. node run id: 7e8f1d23-3e99-4ee1-b2e0-339a7c4282f5_relevance_score_0
+2024-04-03 14:04:57 +0700     181 execution.flow     INFO     Node coherence_score completes.
+2024-04-03 14:04:57 +0700     181 execution.flow     INFO     Executing node coherence_concat_scores. node run id: 7e8f1d23-3e99-4ee1-b2e0-339a7c4282f5_coherence_concat_scores_0
+2024-04-03 14:04:57 +0700     181 execution.flow     INFO     Node coherence_concat_scores completes.
+2024-04-03 14:04:57 +0700     181 execution.flow     INFO     Node relevance_score completes.
+2024-04-03 14:04:57 +0700     181 execution.flow     INFO     Executing node relevance_concat_scores. node run id: 7e8f1d23-3e99-4ee1-b2e0-339a7c4282f5_relevance_concat_scores_0
+2024-04-03 14:04:57 +0700     181 execution.flow     INFO     Node relevance_concat_scores completes.
+2024-04-03 14:04:57 +0700     181 execution.flow     INFO     Node fluency_score completes.
+2024-04-03 14:04:57 +0700     181 execution.flow     INFO     Executing node fluency_concat_scores. node run id: 7e8f1d23-3e99-4ee1-b2e0-339a7c4282f5_fluency_concat_scores_0
+2024-04-03 14:04:57 +0700     181 execution.flow     INFO     Node fluency_concat_scores completes.
+2024-04-03 14:04:58 +0700     181 execution.flow     INFO     Node groundedness_score completes.
+2024-04-03 14:04:58 +0700     181 execution.flow     INFO     Executing node groundedness_concat_scores. node run id: 7e8f1d23-3e99-4ee1-b2e0-339a7c4282f5_groundedness_concat_scores_0
+2024-04-03 14:04:58 +0700     181 execution.flow     INFO     Node groundedness_concat_scores completes.
+2024-04-03 14:04:58 +0700     181 execution.flow     INFO     Start to run 4 nodes with concurrency level 16.
+2024-04-03 14:04:58 +0700     181 execution.flow     INFO     Executing node coherence_aggregate_variants_results. node run id: 7e8f1d23-3e99-4ee1-b2e0-339a7c4282f5_coherence_aggregate_variants_results_reduce
+2024-04-03 14:04:58 +0700     181 execution.flow     INFO     Executing node fluency_aggregate_variants_results. node run id: 7e8f1d23-3e99-4ee1-b2e0-339a7c4282f5_fluency_aggregate_variants_results_reduce
+2024-04-03 14:04:58 +0700     181 execution.flow     INFO     Executing node groundedness_aggregate_variants_results. node run id: 7e8f1d23-3e99-4ee1-b2e0-339a7c4282f5_groundedness_aggregate_variants_results_reduce
+2024-04-03 14:04:58 +0700     181 execution.flow     INFO     Executing node relevance_aggregate_variants_results. node run id: 7e8f1d23-3e99-4ee1-b2e0-339a7c4282f5_relevance_aggregate_variants_results_reduce
+2024-04-03 14:04:58 +0700     181 execution.flow     INFO     Node coherence_aggregate_variants_results completes.
+2024-04-03 14:04:58 +0700     181 execution.flow     INFO     Node fluency_aggregate_variants_results completes.
+2024-04-03 14:04:58 +0700     181 execution.flow     INFO     Node groundedness_aggregate_variants_results completes.
+2024-04-03 14:04:58 +0700     181 execution.flow     INFO     Node relevance_aggregate_variants_results completes.

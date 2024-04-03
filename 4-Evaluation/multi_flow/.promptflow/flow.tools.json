@@ -1,0 +1,352 @@
+{
+  "package": {
+    "promptflow.tools.embedding.embedding": {
+      "name": "Embedding",
+      "description": "Use Open AI's embedding model to create an embedding vector representing the input text.",
+      "type": "python",
+      "module": "promptflow.tools.embedding",
+      "function": "embedding",
+      "inputs": {
+        "connection": {
+          "type": [
+            "AzureOpenAIConnection",
+            "OpenAIConnection"
+          ]
+        },
+        "deployment_name": {
+          "type": [
+            "string"
+          ],
+          "enabled_by": "connection",
+          "enabled_by_type": [
+            "AzureOpenAIConnection"
+          ],
+          "capabilities": {
+            "completion": false,
+            "chat_completion": false,
+            "embeddings": true
+          },
+          "model_list": [
+            "text-embedding-ada-002",
+            "text-search-ada-doc-001",
+            "text-search-ada-query-001"
+          ]
+        },
+        "model": {
+          "type": [
+            "string"
+          ],
+          "enabled_by": "connection",
+          "enabled_by_type": [
+            "OpenAIConnection"
+          ],
+          "enum": [
+            "text-embedding-ada-002",
+            "text-search-ada-doc-001",
+            "text-search-ada-query-001"
+          ],
+          "allow_manual_entry": true
+        },
+        "input": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "package": "promptflow-tools",
+      "package_version": "1.2.0"
+    },
+    "promptflow.tools.open_model_llm.OpenModelLLM.call": {
+      "name": "Open Model LLM",
+      "description": "Use an open model from the Azure Model catalog, deployed to an AzureML Online Endpoint for LLM Chat or Completion API calls.",
+      "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACgElEQVR4nGWSz2vcVRTFP/e9NzOZ1KDGohASslLEH6VLV0ak4l/QpeDCrfQPcNGliODKnVm4EBdBsIjQIlhciKW0ycKFVCSNbYnjdDLtmPnmO/nO9917XcxMkjYX3uLx7nnn3HOuMK2Nix4fP78ZdrYXVkLVWjf3l3B1B+HpcjzGFtmqa6cePz7/x0dnn1n5qhj3iBJPYREIURAJuCtpY8PjReDbrf9WG7H1fuefwQU9qKztTcMJT+PNnEFvjGVDBDlSsH6p/9MLzy6+NxwVqI8RAg4IPmWedMckdLYP6O6UpIaQfvyyXG012+e79/ZfHukoS1ISMT2hGTB1RkUmNgQ5QZ0w+a2VWDq73MbdEWmfnnv6UWe7oNzPaLapl5CwuLTXK9WUGBuCjqekzhP+z52ZXOrKMD3OJg0Hh778aiOuvpnYvp05d6GJO4iAO4QAe/eV36/X5LFRV4Zmn+AdkqlL8Vjp3oVioOz+WTPzzYEgsN+fgPLYyJVheSbPPVl2ikeGZRjtG52/8rHuaV9VOlpP2OtKyVndcRVCSqOhsvxa4vW359i6OuKdD+aP8Q4SYPdOzS/flGjt1JUSaMqZ5nwa1Y8qWb/Ud/eZZkHisYezEM0m+fcelDr8F1SqW2LNK6r1jXQwyLzy1hxvrLXZulry7ocL+FS6G4QIu3fG/Px1gdYeW7LIgXU2P/115TOA5G7e3Rmj2aS/m7l5pThiZzrCcE/d1XHzbln373nw7y6veeoUm5KCNKT/IPPwbiY1hYd/l5MIT65BMFt87sU4v9D7/JMflr44uV6hGh1+L4RCkg6z5iK2tAhNLeLsNGwYA4fDYnC/drvuuFxe86NV/x+Ut27g0FvykgAAAABJRU5ErkJggg==",
+      "type": "custom_llm",
+      "module": "promptflow.tools.open_model_llm",
+      "class_name": "OpenModelLLM",
+      "function": "call",
+      "inputs": {
+        "endpoint_name": {
+          "type": [
+            "string"
+          ],
+          "dynamic_list": {
+            "func_path": "promptflow.tools.open_model_llm.list_endpoint_names"
+          },
+          "allow_manual_entry": true,
+          "is_multi_select": false,
+          "ui_hints": {
+            "index": 0
+          }
+        },
+        "deployment_name": {
+          "default": "",
+          "type": [
+            "string"
+          ],
+          "dynamic_list": {
+            "func_path": "promptflow.tools.open_model_llm.list_deployment_names",
+            "func_kwargs": [
+              {
+                "name": "endpoint",
+                "type": [
+                  "string"
+                ],
+                "optional": true,
+                "reference": "${inputs.endpoint}"
+              }
+            ]
+          },
+          "allow_manual_entry": true,
+          "is_multi_select": false,
+          "ui_hints": {
+            "index": 1
+          }
+        },
+        "api": {
+          "enum": [
+            "chat",
+            "completion"
+          ],
+          "type": [
+            "string"
+          ],
+          "ui_hints": {
+            "index": 2
+          }
+        },
+        "temperature": {
+          "default": 1,
+          "type": [
+            "double"
+          ],
+          "ui_hints": {
+            "index": 3
+          }
+        },
+        "max_new_tokens": {
+          "default": 500,
+          "type": [
+            "int"
+          ],
+          "ui_hints": {
+            "index": 4
+          }
+        },
+        "top_p": {
+          "default": 1,
+          "advanced": true,
+          "type": [
+            "double"
+          ],
+          "ui_hints": {
+            "index": 5
+          }
+        },
+        "model_kwargs": {
+          "default": "{}",
+          "advanced": true,
+          "type": [
+            "object"
+          ],
+          "ui_hints": {
+            "index": 6
+          }
+        }
+      },
+      "package": "promptflow-tools",
+      "package_version": "1.2.0"
+    }
+  },
+  "code": {
+    "coherence/coherence_score.jinja2": {
+      "type": "llm",
+      "inputs": {
+        "answer": {
+          "type": [
+            "string"
+          ]
+        },
+        "question": {
+          "type": [
+            "string"
+          ]
+        },
+        "chat_history": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "coherence/coherence_score.jinja2"
+    },
+    "coherence/concat_scores.py": {
+      "type": "python",
+      "inputs": {
+        "coherence_score": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "coherence/concat_scores.py",
+      "function": "concat_results"
+    },
+    "coherence/aggregate_variants_results.py": {
+      "type": "python",
+      "inputs": {
+        "results": {
+          "type": [
+            "object"
+          ]
+        }
+      },
+      "source": "coherence/aggregate_variants_results.py",
+      "function": "aggregate_variants_results"
+    },
+    "fluency/fluency_score.jinja2": {
+      "type": "llm",
+      "inputs": {
+        "answer": {
+          "type": [
+            "string"
+          ]
+        },
+        "question": {
+          "type": [
+            "string"
+          ]
+        },
+        "chat_history": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "fluency/fluency_score.jinja2"
+    },
+    "fluency/concat_scores.py": {
+      "type": "python",
+      "inputs": {
+        "fluency_score": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "fluency/concat_scores.py",
+      "function": "concat_results"
+    },
+    "fluency/aggregate_variants_results.py": {
+      "type": "python",
+      "inputs": {
+        "results": {
+          "type": [
+            "object"
+          ]
+        }
+      },
+      "source": "fluency/aggregate_variants_results.py",
+      "function": "aggregate_variants_results"
+    },
+    "groundedness/groundedness_score.jinja2": {
+      "type": "llm",
+      "inputs": {
+        "answer": {
+          "type": [
+            "string"
+          ]
+        },
+        "question": {
+          "type": [
+            "string"
+          ]
+        },
+        "context": {
+          "type": [
+            "string"
+          ]
+        },
+        "chat_history": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "groundedness/groundedness_score.jinja2"
+    },
+    "groundedness/concat_scores.py": {
+      "type": "python",
+      "inputs": {
+        "groundesness_score": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "groundedness/concat_scores.py",
+      "function": "concat_results"
+    },
+    "groundedness/aggregate_variants_results.py": {
+      "type": "python",
+      "inputs": {
+        "results": {
+          "type": [
+            "object"
+          ]
+        }
+      },
+      "source": "groundedness/aggregate_variants_results.py",
+      "function": "aggregate_variants_results"
+    },
+    "relevance/relevance_score.jinja2": {
+      "type": "llm",
+      "inputs": {
+        "answer": {
+          "type": [
+            "string"
+          ]
+        },
+        "question": {
+          "type": [
+            "string"
+          ]
+        },
+        "context": {
+          "type": [
+            "string"
+          ]
+        },
+        "chat_history": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "relevance/relevance_score.jinja2"
+    },
+    "relevance/concat_scores.py": {
+      "type": "python",
+      "inputs": {
+        "relevance_score": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "relevance/concat_scores.py",
+      "function": "concat_results"
+    },
+    "relevance/aggregate_variants_results.py": {
+      "type": "python",
+      "inputs": {
+        "results": {
+          "type": [
+            "object"
+          ]
+        }
+      },
+      "source": "relevance/aggregate_variants_results.py",
+      "function": "aggregate_variants_results"
+    }
+  }
+}

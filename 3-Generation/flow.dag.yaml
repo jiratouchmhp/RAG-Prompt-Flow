@@ -1,0 +1,72 @@
+$schema: https://azuremlschemas.azureedge.net/promptflow/latest/Flow.schema.json
+environment:
+  python_requirements_txt: requirements.txt
+inputs:
+  chat_history:
+    type: list
+    is_chat_history: true
+    default: []
+  question:
+    type: string
+    is_chat_input: true
+    default: I have to go camping with my family, what items would you recommend for
+      a family of 4 and how much would it cost?
+  customer_id:
+    type: string
+    default: "1"
+outputs:
+  answer:
+    type: string
+    reference: ${llm_response.output}
+    is_chat_output: true
+  context:
+    type: string
+    reference: ${retrieve_documentation.output}
+nodes:
+- name: question_embedding
+  type: python
+  source:
+    type: package
+    tool: promptflow.tools.embedding.embedding
+  inputs:
+    connection: aoai-connection
+    deployment_name: text-embedding-ada-002
+    input: ${inputs.question}
+- name: retrieve_documentation
+  type: python
+  source:
+    type: code
+    path: ../py-functions/retrieve_documentation.py
+  inputs:
+    question: ${inputs.question}
+    index_name: contoso-products
+    embedding: ${question_embedding.output}
+    search: contoso-search
+- name: customer_lookup
+  type: python
+  source:
+    type: code
+    path: ../py-functions/customer_lookup.py
+  inputs:
+    customerId: ${inputs.customer_id}
+    conn: contoso-cosmos
+- name: customer_prompt
+  type: prompt
+  source:
+    type: code
+    path: ../py-functions/customer_prompt.jinja2
+  inputs:
+    documentation: ${retrieve_documentation.output}
+    customer: ${customer_lookup.output}
+    history: ${inputs.chat_history}
+- name: llm_response
+  type: llm
+  source:
+    type: code
+    path: ../py-functions/llm_response.jinja2
+  inputs:
+    deployment_name: gpt-35-turbo
+    prompt_text: ${customer_prompt.output}
+    question: ${inputs.question}
+  connection: aoai-connection
+  api: chat
